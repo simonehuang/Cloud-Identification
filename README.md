@@ -1,1 +1,10 @@
-# Cloud-Identification
+# Cloud Identification
+
+Satellite images are used for vegetation monitoring, and for this purpose, cloud is an obstacle as it obstructs the vegetation image. Therefore, it is necessary to identify cloud pixels in images. The GOES-16 satellite has 16 spectral bands spread across visible, near-infrared and infrared, each band occupying a different wavelength range. One way to differentiate clouds is by their reflectance across the spectrum, as each type of surface has a specific spectral signature, making this distinction possible. To identify clouds, a Dataset of reflectance values ​​in the spectra of the first 6 bands of GOES-16 was created, to use SVM (Support Vector Machine) and KNN (K-Nearest Neighbors), two supervised learning models for clustering image data, in order to separate cloud and non-cloud pixels. Finally, cloud masks were used to validate the models.
+
+All reflectance files are present on the [satellite file download page](https://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi?source=aws&satellite=noaa-goes16&domain=C&product=ABI-L2-MCMIP&date=2017-08-25&hour=22), making it possible to search for them by day, hour and minutes in UTC (universal time) and selecting "Cloud and Moisture Imagery" as the product.
+
+This project involves the identification of cloud pixels through spectral analysis of GOES-16 meteorological satellite images, and is divided into 3 main parts:
+1. **Identifying all surfaces and remapping images**: GOES-16 can capture an area approximately 1/3 of Earth in a single image, so to have images of just one type of surface (e.g., cloud, forest, water, city, and undergrowth), these images must be remapped. Due to some environment configuration, this step was done locally.
+2. **Creating datasets**: After remapping and resizing the images to standardize them, datasets were created for each surface, containing the pixel values ​​of these images.
+3. **Image data cluster**: After creating the datasets, you can now group the data using the models, in order to separate the cloud pixels and non-cloud pixels.
